@@ -71,7 +71,7 @@ const generateAIInsights = (unit: STRUnit) => {
     return suggestions;
 };
 
-// --- COMPONENT: Unit Performance Card (Arabic) ---
+// --- COMPONENT: Unit Performance Card (Arabic Lighter Design) ---
 const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
     const variance = unit.actualRevenue - unit.forecastedRevenue;
     const isPositive = variance >= 0;
@@ -90,13 +90,13 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group relative bg-[#151516] rounded-[2rem] p-8 border border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] hover:bg-[#1A1A1C] transition-colors duration-500 overflow-hidden text-right"
+            className="group relative bg-[#1c1c1e] rounded-[2rem] p-8 border border-white/5 shadow-2xl hover:shadow-[0_8px_40px_rgba(0,0,0,0.2)] hover:border-white/10 transition-all duration-500 overflow-hidden text-right"
         >
             {/* Header Row */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
                 <div className="flex items-center gap-5">
                     <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center shadow-inner">
-                        <span className="text-white/20 font-black text-xl">#</span>
+                        <span className="text-white/30 font-black text-xl">#</span>
                     </div>
                     <div>
                         <h4 className="text-4xl font-bold text-white tracking-tight">{unit.unitNumber}</h4>
@@ -118,12 +118,12 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
                     <span>تقدم الإيرادات</span>
                     <span>{percentAchieved}% من الهدف</span>
                 </div>
-                <div className="h-4 w-full bg-[#0A0A0A] rounded-full overflow-hidden shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border border-white/5 relative">
+                <div className="h-4 w-full bg-[#121214] rounded-full overflow-hidden shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] border border-white/5 relative">
                     <motion.div 
                         initial={{ width: 0 }}
                         whileInView={{ width: `${percentAchieved}%` }}
                         transition={{ duration: 1.2, ease: 'circOut' }}
-                        className={`absolute right-0 h-full rounded-full shadow-[0_0_20px_rgba(16,185,129,0.4)] ${
+                        className={`absolute right-0 h-full rounded-full shadow-[0_0_20px_rgba(16,185,129,0.3)] ${
                             isPositive 
                             ? 'bg-gradient-to-l from-emerald-500 to-cyan-400' 
                             : 'bg-gradient-to-l from-rose-500 to-pink-500'
@@ -134,23 +134,22 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
 
             {/* Financial Grid */}
             <div className="grid grid-cols-2 gap-4 mb-10">
-                <div className="bg-black/30 rounded-2xl p-5 border border-white/5">
+                <div className="bg-[#232326] rounded-2xl p-5 border border-white/5">
                     <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">المستهدف</p>
-                    <p className="text-2xl font-bold text-white/60 tabular-nums">{formatCurrency(unit.forecastedRevenue)}</p>
+                    <p className="text-2xl font-bold text-white/70 tabular-nums">{formatCurrency(unit.forecastedRevenue)}</p>
                 </div>
-                <div className="bg-black/30 rounded-2xl p-5 border border-white/5 relative overflow-hidden">
-                    <div className={`absolute inset-0 opacity-10 ${isPositive ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
+                <div className="bg-[#232326] rounded-2xl p-5 border border-white/5 relative overflow-hidden">
+                    <div className={`absolute inset-0 opacity-[0.08] ${isPositive ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
                     <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">الفعلي</p>
                     <p className="text-3xl font-bold text-white tabular-nums relative z-10">{formatCurrency(unit.actualRevenue)}</p>
                 </div>
             </div>
 
-            {/* Strategic Insights (Cinematic) */}
-            <div className="relative rounded-2xl overflow-hidden mb-8">
-                 <div className="absolute inset-0 bg-gradient-to-bl from-yellow-500/10 via-transparent to-transparent opacity-50"></div>
-                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-l from-transparent via-yellow-500/50 to-transparent"></div>
+            {/* Strategic Insights (Lighter & Brighter) */}
+            <div className="relative rounded-2xl overflow-hidden mb-8 shadow-lg">
+                 <div className="absolute inset-0 bg-gradient-to-bl from-[#302b20] to-[#1e1e20]"></div>
                  
-                 <div className="relative p-6 bg-white/[0.02] backdrop-blur-sm">
+                 <div className="relative p-6">
                     <div className="flex items-center gap-3 mb-5">
                         <div className="p-2 rounded-lg bg-gradient-to-b from-yellow-400 to-amber-600 shadow-[0_0_15px_rgba(251,191,36,0.3)]">
                             <LightBulbIcon className="w-4 h-4 text-white" />
@@ -160,7 +159,7 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
                     <div className="space-y-3">
                         {insights.map((insight, idx) => (
                             <div key={idx} className="flex gap-4">
-                                <div className={`w-1 h-full min-h-[1.5rem] rounded-full ${
+                                <div className={`w-1 h-full min-h-[1.5rem] rounded-full mt-1 ${
                                     insight.type === 'urgent' ? 'bg-rose-500 shadow-[0_0_10px_#f43f5e]' : 
                                     insight.type === 'success' ? 'bg-emerald-500 shadow-[0_0_10px_#10b981]' : 
                                     'bg-indigo-500 shadow-[0_0_10px_#6366f1]'
@@ -179,11 +178,11 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
                     {unit.negotiatedRates?.map((rate, idx) => {
                          const isAchieved = unit.actualRevenue >= rate.price;
                          return (
-                            <div key={idx} className="flex justify-between items-center text-sm opacity-60 hover:opacity-100 transition-opacity">
-                                <span className="font-medium text-white/60">{getRateLabel(rate.label)}</span>
+                            <div key={idx} className="flex justify-between items-center text-sm opacity-70 hover:opacity-100 transition-opacity">
+                                <span className="font-medium text-gray-400">{getRateLabel(rate.label)}</span>
                                 <div className="flex items-center gap-3">
-                                    <span className="text-white tabular-nums">{formatCurrency(rate.price)}</span>
-                                    <div className={`w-2 h-2 rounded-full ${isAchieved ? 'bg-emerald-500' : 'bg-white/10'}`}></div>
+                                    <span className="text-gray-200 tabular-nums">{formatCurrency(rate.price)}</span>
+                                    <div className={`w-2 h-2 rounded-full ${isAchieved ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' : 'bg-white/10'}`}></div>
                                 </div>
                             </div>
                          );
@@ -196,7 +195,7 @@ const UnitPerformanceCard: React.FC<{ unit: STRUnit }> = ({ unit }) => {
 
 // --- COMPONENT: Summary Card ---
 const SummaryCard: React.FC<{ title: string; value: string; trend?: string; trendPositive?: boolean }> = ({ title, value, trend, trendPositive }) => (
-    <div className="bg-[#151516] p-8 rounded-[2rem] border border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] relative group overflow-hidden text-right">
+    <div className="bg-[#1c1c1e] p-8 rounded-[2rem] border border-white/5 shadow-xl relative group overflow-hidden transition-transform hover:-translate-y-1 text-right">
         <div className="relative z-10">
             <p className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">{title}</p>
             <p className="text-4xl lg:text-5xl font-bold text-white tracking-tighter mb-4">{value}</p>
@@ -208,7 +207,7 @@ const SummaryCard: React.FC<{ title: string; value: string; trend?: string; tren
                 </div>
             )}
         </div>
-        <div className={`absolute -left-12 -bottom-12 w-48 h-48 rounded-full opacity-[0.08] blur-3xl group-hover:opacity-[0.15] transition-opacity duration-500 ${trendPositive ? 'bg-emerald-500' : 'bg-indigo-500'}`}></div>
+        <div className={`absolute -left-12 -bottom-12 w-48 h-48 rounded-full opacity-[0.1] blur-3xl group-hover:opacity-[0.2] transition-opacity duration-500 ${trendPositive ? 'bg-emerald-500' : 'bg-indigo-500'}`}></div>
     </div>
 );
 
@@ -231,7 +230,6 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
   };
 
   const processAirbnbCSV = (csvText: string) => {
-      // (Simplified logic for brevity as per English version)
       const rows = csvText.split(/\r?\n/);
       let headerRowIndex = -1;
       for (let i = 0; i < Math.min(rows.length, 20); i++) {
@@ -279,9 +277,12 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
           const listingName = cols[listingIndex];
           const earnings = parseFloat((cols[earningsIndex] || '0').replace(/[^0-9.-]+/g, ''));
           const nights = parseFloat((cols[nightsIndex] || '0').replace(/[^0-9.]/g, ''));
-          const match = listingName.match(/(3305|3321|3322)/);
-          if (match) {
-              const unitNum = match[0];
+          
+          // DYNAMIC MATCHING (ARABIC)
+          const matchedUnit = newUnits.find(u => listingName.includes(u.unitNumber));
+          
+          if (matchedUnit) {
+              const unitNum = matchedUnit.unitNumber;
               const current = unitMap.get(unitNum) || { revenue: 0, bookedNights: 0 };
               unitMap.set(unitNum, {
                   revenue: current.revenue + earnings,
@@ -320,10 +321,17 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
   const isOverallPositive = totals.variance >= 0;
 
   return (
-    <div className="min-h-screen bg-black text-[#F5F5F7] font-cairo selection:bg-indigo-500/30 selection:text-white" dir="rtl">
+    <div className="min-h-screen bg-[#09090b] text-[#E4E4E7] font-cairo selection:bg-indigo-500/30 selection:text-white relative overflow-hidden" dir="rtl">
+      
+      {/* Ambient Background */}
+      <div className="fixed inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-900/10 rounded-full blur-[120px]" />
+      </div>
+
       <Header_ar onToggleLanguage={onToggleLanguage} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 relative z-10">
         
         <FadeInUp>
           <div className="text-center pt-20 pb-16">
@@ -344,7 +352,7 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
                 <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept=".csv" className="hidden" />
                 <button 
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-xs font-bold uppercase tracking-widest text-white hover:text-white/80 active:scale-95"
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-xs font-bold uppercase tracking-widest text-white hover:text-white/80 active:scale-95 shadow-sm"
                 >
                     <UploadIcon className="w-4 h-4" />
                     <span>رفع ملف Airbnb</span>
@@ -388,7 +396,7 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
                         </div>
                         <input
                             type="text"
-                            className="block w-full pr-11 pl-4 py-3 bg-[#151516] border border-white/5 rounded-xl text-sm text-white placeholder-white/20 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                            className="block w-full pr-11 pl-4 py-3 bg-[#1c1c1e] border border-white/5 rounded-xl text-sm text-white placeholder-white/20 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all shadow-sm"
                             placeholder="بحث برقم الوحدة..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
@@ -402,7 +410,7 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
                             <UnitPerformanceCard key={unit.id} unit={unit} />
                         ))
                     ) : (
-                        <div className="text-center py-24 bg-[#151516] rounded-[2rem] border border-dashed border-white/5">
+                        <div className="text-center py-24 bg-[#1c1c1e] rounded-[2rem] border border-dashed border-white/5">
                             <p className="text-white/30 font-medium">لا توجد وحدات مطابقة للبحث.</p>
                         </div>
                     )}
@@ -411,7 +419,7 @@ const App_ar: React.FC<AppProps> = ({ onToggleLanguage, data: initialData }) => 
         </Section>
       </main>
 
-      <footer className="py-16 text-center border-t border-white/5 bg-black">
+      <footer className="py-16 text-center border-t border-white/5 bg-[#09090b] relative z-10">
          <p className="text-xs font-bold text-white/30 uppercase tracking-[0.2em] mb-2 font-cairo">
             إدارة أملاك مثوى
          </p>
